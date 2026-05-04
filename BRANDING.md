@@ -157,7 +157,7 @@ filter: brightness(0.62);
 |---|---|---|---|
 | Fade up (hero) | `0.8s` | `ease` | Elementos del hero al cargar |
 | Scroll reveal | `0.8s` | `ease` | Elementos al entrar al viewport (`threshold: 0.12`) |
-| Slider hero | `1.2s` | `ease` | Transición entre slides (cada 5s) |
+| Slider hero | — | — | Eliminado — hero es imagen estática (mejor CWV y conversión) |
 | Hover cards | `0.5–0.8s` | `cubic-bezier(0.25, 0.46, 0.45, 0.94)` | Imágenes de servicio y galería |
 | WA float pulse | `3s` | `ease-in-out` | Botón flotante de WhatsApp |
 
@@ -180,6 +180,33 @@ filter: brightness(0.62);
 | Padding interno de tarjetas | `32–48px` |
 
 El `gap: 2px` entre tarjetas es una decisión de diseño intencional — crea líneas divisorias casi imperceptibles que estructuran sin dividir agresivamente.
+
+---
+
+## Mobile (max-width: 768px)
+
+### Breakpoints
+
+| Breakpoint | Uso |
+|---|---|
+| `768px` | Breakpoint principal — todos los cambios mobile van aquí |
+| `480px` | Solo para servicios grid (1 columna forzada) |
+
+### Reglas mobile específicas
+
+- **Hero:** `100svh`, overlay más denso (`.97` abajo), `object-position: 58% 35% !important` (override inline style requiere `!important`)
+- **Trust bar:** Muestra solo los 2 primeros ítems (`nth-child(3,4)` → `display: none`)
+- **Servicios:** Descripción de tarjeta siempre visible en mobile (no se oculta en hover)
+- **Proceso:** `display: none` — sección omitida en móvil
+- **Footer:** `grid-template-columns: 1fr 1fr` + `footer-brand { grid-column: 1 / -1 }` — brand ocupa fila completa, columnas servicios/contacto lado a lado
+- **CTAs:** `width: 100%; justify-content: center` — siempre full-width en mobile
+- **Floating WA:** `bottom: 52px; right: 20px`
+
+### Principios mobile
+
+- Reducir spacing — no eliminar — mantener la jerarquía visual
+- Los párrafos secundarios se pueden omitir; el copy esencial siempre presente
+- Nada de hover en mobile — los estados hover se convierten en estado base
 
 ---
 

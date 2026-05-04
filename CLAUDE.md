@@ -36,16 +36,16 @@ URL del CTA: `https://wa.me/573204022533?text=Hola%2C%20quiero%20agendar%20una%2
 |---|---|---|
 | Navbar | `#navbar` | Fijo, se oscurece al hacer scroll |
 | Hero | `#hero` | Imagen estática de Martín (`hero1_MartinFix.png`), sin slider |
-| Trust bar | — | Banda dorada con 4 credenciales |
-| Servicios | `#servicios` | Grid de 5 tarjetas con hover reveal |
-| Antes/Después | `#antes-despues` | Slider interactivo drag/click |
+| Trust bar | — | Banda dorada con 4 credenciales (en móvil solo muestra 2) |
+| Servicios | `#servicios` | Grid de 5 tarjetas con hover reveal; descripción siempre visible en móvil |
+| Antes/Después | `#antes-despues` | Slider interactivo drag/click; touch-action split: pan-y en wrapper, none en handle |
 | Sobre Silvia | `#silvia` | Foto + bio + certificaciones |
-| Proceso | `#proceso` | 4 pasos numerados |
+| Proceso | `#proceso` | 4 pasos numerados — oculto en móvil (`display: none`) |
 | Testimonios | `#testimonios` | 3 reseñas placeholder |
 | Galería | `#galeria` | Grid tipo revista con todas las fotos |
 | Ubicación | `#ubicacion` | Google Maps embed + datos de contacto |
-| CTA final | `#cta-final` | Botón WhatsApp grande con efecto shimmer |
-| Footer | — | 3 columnas + redes sociales |
+| CTA final | `#cta-final` | Botón WhatsApp grande con efecto shimmer; full-width en móvil |
+| Footer | — | 3 columnas desktop; móvil: brand full-width + servicios/contacto en 2 columnas |
 | WhatsApp flotante | — | Botón verde fijo esquina inferior derecha |
 
 ## Imágenes disponibles en /public
@@ -67,9 +67,18 @@ URL del CTA: `https://wa.me/573204022533?text=Hola%2C%20quiero%20agendar%20una%2
 | `fachada.jpg` | Fachada del local — usada como imagen grande en galería |
 | `letrero_entrada.jpg` | Letrero de entrada — usada en galería |
 
+## Decisiones de diseño móvil
+
+- Hamburger toggle (3 líneas): abre y cierra el menú en el mismo botón — sin botón X
+- Hero: `100svh`, `object-position: 58% 35% !important` en móvil con `!important` para override del inline style
+- Before/After slider: `syncBeforeWidth()` JS fija `beforeImg.style.width = slider.offsetWidth + 'px'` en load y resize
+- Footer móvil: `grid-template-columns: 1fr 1fr` + `footer-brand { grid-column: 1 / -1 }`
+- Sección proceso: `display: none` en móvil
+
 ## Pendientes conocidos
 - Los testimonios son placeholders realistas — reemplazar con reseñas reales cuando estén disponibles
 - Las certificaciones de Silvia en la sección "About" son genéricas — confirmar con la propietaria cuáles son reales
+- Horario de atención sin confirmar con Silvia (actualmente: Lun–Sáb 8am–6pm, Dom con cita)
 
 ## SEO
 
@@ -82,9 +91,11 @@ URL del CTA: `https://wa.me/573204022533?text=Hola%2C%20quiero%20agendar%20una%2
 
 ## Google Maps embed
 
+URL actual (mapa normal, no Street View):
 ```html
-<iframe src="https://www.google.com/maps/embed?pb=!3m2!1ses!2sco!4v1777888496675!5m2!1ses!2sco!6m8!1m7!1s9GVeIp8YwfjXyVr_GSK7Fg!2m2!1d7.060762190443648!2d-73.08084514784767!3f25.641398382091253!4f-8.162099572725424!5f0.7820865974627469" ...></iframe>
+<iframe src="https://maps.google.com/maps?q=7.060762,-73.080845&z=17&hl=es&output=embed" ...></iframe>
 ```
+Dark mode via CSS: `filter: invert(1) hue-rotate(180deg) brightness(0.85) saturate(0.9)`
 
 ## Horario de atención (placeholder)
 
@@ -97,7 +108,7 @@ URL del CTA: `https://wa.me/573204022533?text=Hola%2C%20quiero%20agendar%20una%2
 
 - HTML5 semántico
 - CSS3 puro (variables, grid, flexbox, animaciones, IntersectionObserver)
-- JS vanilla (slider hero, before/after drag, scroll reveal, navbar scroll)
+- JS vanilla (before/after drag, scroll reveal, navbar scroll, mobile menu toggle)
 - Fuentes: Google Fonts (Cormorant Garamond + Montserrat)
 - Sin dependencias externas, sin frameworks, sin build step
 - Un solo archivo `index.html` — listo para servir en cualquier hosting estático (GitHub Pages, Netlify, etc.)
