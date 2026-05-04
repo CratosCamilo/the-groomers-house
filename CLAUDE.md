@@ -1,5 +1,7 @@
 # The Groomer's House — Contexto del proyecto
 
+> Sistema de diseño completo (colores, tipografía, componentes, mobile): ver `BRANDING.md`
+
 ## Información del negocio
 
 **Nombre:** The Groomer's House  
