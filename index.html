@@ -1036,8 +1036,58 @@
       }
 
       /* HERO — pantalla completa en móvil */
-      #hero { height: 100svh; }
-      .hero-content { padding: 0 0 36px; }
+      #hero { height: 100svh; min-height: 100svh; }
+
+      /* Imagen — composición balanceada en portrait */
+      .hero-img img { object-position: 58% 35% !important; }
+
+      /* Overlay — más profundo en la base para legibilidad */
+      .hero-overlay {
+        background: linear-gradient(to top,
+          rgba(10,10,10,0.97) 0%,
+          rgba(10,10,10,0.55) 38%,
+          rgba(10,10,10,0.06) 100%);
+      }
+
+      /* Contenido — más aire */
+      .hero-content { padding: 0 0 56px; }
+
+      /* Eyebrow */
+      .hero-eyebrow { margin-bottom: 14px; letter-spacing: 4px; }
+
+      /* Título — jerarquía editorial: primera línea dominante */
+      .hero-h1 {
+        font-size: clamp(2.75rem, 9.5vw, 3.8rem);
+        line-height: 1.06;
+        margin-bottom: 20px;
+      }
+      /* "en Floridablanca" ligeramente secundario */
+      .hero-h1 em { font-size: 0.84em; }
+
+      /* Párrafo — más compacto y legible */
+      .hero-sub {
+        font-size: 0.875rem;
+        line-height: 1.75;
+        margin-bottom: 36px;
+      }
+
+      /* CTAs — columna, full width, más tapeables */
+      .hero-actions { flex-direction: column; gap: 12px; }
+      .hero-actions .btn-wa {
+        width: 100%;
+        justify-content: center;
+        padding: 18px 24px;
+        font-size: 13px;
+        letter-spacing: 2.5px;
+      }
+      .hero-actions .btn-outline {
+        width: 100%;
+        justify-content: center;
+        padding: 15px 24px;
+      }
+
+      /* WA flotante — más separado del borde inferior */
+      .float-wa { bottom: 52px; right: 20px; }
 
       /* SECCIONES — padding reducido */
       #servicios, #antes-despues, #silvia, #testimonios, #galeria, #ubicacion { padding: 70px 0; }
