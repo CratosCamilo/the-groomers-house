@@ -1,0 +1,103 @@
+# The Groomer's House — Contexto del proyecto
+
+## Información del negocio
+
+**Nombre:** The Groomer's House  
+**Propietaria:** Silvia Acelas  
+**Experiencia:** 8 años en grooming canino profesional  
+**Dirección:** Cra. 38a # 204C-21, Floridablanca, Santander, Colombia  
+**WhatsApp:** +57 320 402 2533  
+**Instagram:** https://www.instagram.com/the_groomers_house  
+
+## Qué es este proyecto
+
+Landing page estática de una sola página (`index.html`) para una peluquería canina premium en Floridablanca, Santander. El objetivo principal es convertir visitantes en clientes vía WhatsApp. No hay framework — solo HTML, CSS y JS vanilla embebidos en un solo archivo.
+
+## Objetivo de conversión
+
+Todo el diseño apunta a un único CTA: abrir WhatsApp con mensaje prellenado.  
+URL del CTA: `https://wa.me/573204022533?text=Hola%2C%20quiero%20agendar%20una%20cita%20para%20mi%20mascota`
+
+## Servicios ofrecidos
+
+1. **Baño y Cuidado** — baño con productos hipoalergénicos, limpieza de orejas, secado suave
+2. **Corte y Estilizado** — cortes de autor adaptados a cada raza
+3. **Cuidado del Pelaje** — tratamientos nutritivos, desenredo, cepillado profundo
+4. **Secado Profesional** — equipos de bajo ruido y temperatura controlada
+5. **Cuidado de Uñas** — corte y lima con herramientas esterilizadas
+
+## Decisiones arquitectónicas
+
+- **Todo en un solo `index.html`** — CSS y JS embebidos. No hay framework ni build step. Un solo request HTTP, fácil de desplegar en cualquier hosting estático. No separar en archivos a menos que el sitio crezca a múltiples páginas.
+
+## Estructura de secciones
+
+| Sección | ID | Descripción |
+|---|---|---|
+| Navbar | `#navbar` | Fijo, se oscurece al hacer scroll |
+| Hero | `#hero` | Imagen estática de Martín (`hero1_MartinFix.png`), sin slider |
+| Trust bar | — | Banda dorada con 4 credenciales |
+| Servicios | `#servicios` | Grid de 5 tarjetas con hover reveal |
+| Antes/Después | `#antes-despues` | Slider interactivo drag/click |
+| Sobre Silvia | `#silvia` | Foto + bio + certificaciones |
+| Proceso | `#proceso` | 4 pasos numerados |
+| Testimonios | `#testimonios` | 3 reseñas placeholder |
+| Galería | `#galeria` | Grid tipo revista con todas las fotos |
+| Ubicación | `#ubicacion` | Google Maps embed + datos de contacto |
+| CTA final | `#cta-final` | Botón WhatsApp grande con efecto shimmer |
+| Footer | — | 3 columnas + redes sociales |
+| WhatsApp flotante | — | Botón verde fijo esquina inferior derecha |
+
+## Imágenes disponibles en /public
+
+| Archivo | Uso |
+|---|---|
+| `logo.jpg` | Logo en navbar y footer |
+| `hero1_MartinFix.png` | Hero estático principal (Golden Retriever "Martín") — versión outpainted por Gemini, cara completa visible con letrero al fondo |
+| `hero2_Kira.jpg` | Slide 2 del hero (perro pequeño "Kira") — posición `center 65%`, bien encuadrado |
+| `hero3_Luca.jpg` | Slide 3 del hero (Collie "Luca") — posición `55% 30%` |
+| `antes.png` | Imagen "Antes" del slider de comparación |
+| `despues.png` | Imagen "Después" del slider de comparación |
+| `servicio-bano-cuidado.png` | Tarjeta servicio Baño y Cuidado |
+| `servicio-corte-estilizado.png` | Tarjeta servicio Corte y Estilizado |
+| `servicio-cuidado-pelaje.png` | Tarjeta servicio Cuidado del Pelaje |
+| `servicio-secado-profesional.png` | Tarjeta servicio Secado Profesional |
+| `servicio-cuidado-unas.png` | Tarjeta servicio Cuidado de Uñas |
+| `silvia-estilista.jpg.jpg` | Foto de Silvia (nota: nombre con doble extensión) |
+| `fachada.jpg` | Fachada del local — usada como imagen grande en galería |
+| `letrero_entrada.jpg` | Letrero de entrada — usada en galería |
+
+## Pendientes conocidos
+- Los testimonios son placeholders realistas — reemplazar con reseñas reales cuando estén disponibles
+- Las certificaciones de Silvia en la sección "About" son genéricas — confirmar con la propietaria cuáles son reales
+
+## SEO
+
+- **H1 único:** "Peluquería canina en Floridablanca"
+- **Keywords primarias:** peluquería canina Floridablanca, grooming canino Bucaramanga, estética canina Santander
+- **Meta title:** "Peluquería Canina en Floridablanca | The Groomer's House"
+- **Meta description:** incluye Floridablanca, Santander, Bucaramanga, grooming canino
+- Estructura H1 → H2 → H3 correcta en toda la página
+- Google Maps embed con `title` y `referrerpolicy`
+
+## Google Maps embed
+
+```html
+<iframe src="https://www.google.com/maps/embed?pb=!3m2!1ses!2sco!4v1777888496675!5m2!1ses!2sco!6m8!1m7!1s9GVeIp8YwfjXyVr_GSK7Fg!2m2!1d7.060762190443648!2d-73.08084514784767!3f25.641398382091253!4f-8.162099572725424!5f0.7820865974627469" ...></iframe>
+```
+
+## Horario de atención (placeholder)
+
+- Lunes a Sábado: 8:00 am – 6:00 pm
+- Domingos: con cita previa
+
+*Confirmar horario real con Silvia.*
+
+## Tecnología
+
+- HTML5 semántico
+- CSS3 puro (variables, grid, flexbox, animaciones, IntersectionObserver)
+- JS vanilla (slider hero, before/after drag, scroll reveal, navbar scroll)
+- Fuentes: Google Fonts (Cormorant Garamond + Montserrat)
+- Sin dependencias externas, sin frameworks, sin build step
+- Un solo archivo `index.html` — listo para servir en cualquier hosting estático (GitHub Pages, Netlify, etc.)
