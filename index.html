@@ -172,13 +172,16 @@
       flex-direction: column;
       gap: 5px;
       cursor: pointer;
-      padding: 4px;
+      padding: 10px;
+      background: transparent;
+      border: 1px solid rgba(201,168,76,0.35);
+      border-radius: 2px;
     }
     .hamburger span {
       display: block;
-      width: 24px;
+      width: 22px;
       height: 1px;
-      background: var(--white);
+      background: var(--gold);
       transition: all 0.3s;
     }
     .mobile-menu {
@@ -1041,13 +1044,13 @@
       #cta-final { padding: 80px 0; }
       #proceso { display: none; }
 
-      /* TRUST BAR — 2 columnas */
-      .trust-bar-inner {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 10px 8px;
-        padding: 0 8px;
-      }
+      /* TRUST BAR — solo 2 ítems en fila */
+      .trust-bar-inner { flex-wrap: nowrap; justify-content: center; gap: 24px; }
+      .trust-item:nth-child(3),
+      .trust-item:nth-child(4) { display: none; }
+
+      /* DESCUBRIR — oculto en móvil */
+      .scroll-hint { display: none; }
 
       /* SERVICES */
       .services-grid { grid-template-columns: 1fr 1fr; }
@@ -1055,8 +1058,9 @@
       /* BEFORE/AFTER — altura fija, scroll desbloqueado */
       .ba-layout { gap: 40px; }
       .ba-slider-wrap { height: 340px; }
-      .ba-after { height: 340px; width: 100%; object-fit: cover; }
-      .ba-before-wrap img { width: 100%; height: 340px; min-width: unset; object-fit: cover; }
+      .ba-after { position: absolute; top: 0; left: 0; width: 100%; height: 340px; object-fit: cover; object-position: center; }
+      .ba-before-wrap { height: 340px; }
+      .ba-before-wrap img { height: 340px; max-width: none; min-width: unset; object-fit: cover; object-position: center; }
 
       /* ABOUT */
       .about-img-frame::before { display: none; }
@@ -1585,8 +1589,16 @@
   (function() {
     const slider = document.getElementById('baSlider');
     const beforeWrap = document.getElementById('baBeforeWrap');
+    const beforeImg = beforeWrap.querySelector('img');
     const divider = document.getElementById('baDivider');
     let dragging = false;
+
+    // El before-img debe tener el ancho completo del slider, no del wrap
+    function syncBeforeWidth() {
+      beforeImg.style.width = slider.offsetWidth + 'px';
+    }
+    syncBeforeWidth();
+    window.addEventListener('resize', syncBeforeWidth);
 
     function setPosition(pct) {
       pct = Math.max(5, Math.min(95, pct));
