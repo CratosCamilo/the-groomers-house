@@ -435,6 +435,8 @@
       touch-action: pan-y;
     }
     .ba-divider { touch-action: none; }
+    .ba-hinting .ba-before-wrap,
+    .ba-hinting .ba-divider { transition: width 0.5s ease, left 0.5s ease; }
     .ba-slider-wrap::after {
       content: '';
       position: absolute;
@@ -1691,6 +1693,22 @@
     window.addEventListener('touchend', () => { dragging = false; });
 
     slider.addEventListener('click', e => setPosition(getPercent(e.clientX)));
+
+    // HINT ANIMATION — runs once when slider enters viewport
+    const hintObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        hintObserver.unobserve(slider);
+        setTimeout(() => {
+          slider.classList.add('ba-hinting');
+          setPosition(65);
+          setTimeout(() => setPosition(35), 600);
+          setTimeout(() => setPosition(50), 1200);
+          setTimeout(() => slider.classList.remove('ba-hinting'), 1800);
+        }, 600);
+      });
+    }, { threshold: 0.5 });
+    hintObserver.observe(slider);
   })();
 
   // CLEAN URL NAVIGATION — scroll to section without showing # in address bar
