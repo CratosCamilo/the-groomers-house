@@ -1693,6 +1693,21 @@
     slider.addEventListener('click', e => setPosition(getPercent(e.clientX)));
   })();
 
+  // CLEAN URL NAVIGATION — scroll to section without showing # in address bar
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    const id = a.getAttribute('href').slice(1);
+    const target = id ? document.getElementById(id) : null;
+    e.preventDefault();
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    history.pushState(null, '', location.pathname);
+  });
+
   // SCROLL REVEAL
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
