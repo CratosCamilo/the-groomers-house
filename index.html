@@ -1274,7 +1274,7 @@
     </div>
     <div class="services-grid">
       <div class="service-card reveal">
-        <img src="public/servicio-bano-cuidado.png" alt="Baño y cuidado para perros en Floridablanca" loading="lazy" />
+        <img src="public/servicio-bano-cuidado.png" data-gif="public/servicio-bano-cuidado.gif" alt="Baño y cuidado para perros en Floridablanca" loading="lazy" />
         <div class="service-card-overlay">
           <p class="service-number">01</p>
           <h3 class="service-name">Baño &amp; Cuidado</h3>
@@ -1283,7 +1283,7 @@
         </div>
       </div>
       <div class="service-card reveal reveal-delay-1">
-        <img src="public/servicio-corte-estilizado.png" alt="Corte y estilizado canino profesional Floridablanca" loading="lazy" />
+        <img src="public/servicio-corte-estilizado.png" data-gif="public/servicio-corte-estilizado.gif" alt="Corte y estilizado canino profesional Floridablanca" loading="lazy" />
         <div class="service-card-overlay">
           <p class="service-number">02</p>
           <h3 class="service-name">Corte &amp; Estilizado</h3>
@@ -1292,7 +1292,7 @@
         </div>
       </div>
       <div class="service-card reveal reveal-delay-2">
-        <img src="public/servicio-cuidado-pelaje.png" alt="Cuidado del pelaje canino Santander" loading="lazy" />
+        <img src="public/servicio-cuidado-pelaje.png" data-gif="public/servicio-cuidado-pelaje.gif" alt="Cuidado del pelaje canino Santander" loading="lazy" />
         <div class="service-card-overlay">
           <p class="service-number">03</p>
           <h3 class="service-name">Cuidado del Pelaje</h3>
@@ -1301,7 +1301,7 @@
         </div>
       </div>
       <div class="service-card reveal reveal-delay-1">
-        <img src="public/servicio-secado-profesional.png" alt="Secado profesional para perros Bucaramanga" loading="lazy" />
+        <img src="public/servicio-secado-profesional.png" data-gif="public/servicio-secado-profesional.gif" alt="Secado profesional para perros Bucaramanga" loading="lazy" />
         <div class="service-card-overlay">
           <p class="service-number">04</p>
           <h3 class="service-name">Secado Profesional</h3>
@@ -1310,7 +1310,7 @@
         </div>
       </div>
       <div class="service-card reveal reveal-delay-2">
-        <img src="public/servicio-cuidado-unas.png" alt="Cuidado de uñas para perros Floridablanca" loading="lazy" />
+        <img src="public/servicio-cuidado-unas.png" data-gif="public/servicio-cuidado-unas.gif" alt="Cuidado de uñas para perros Floridablanca" loading="lazy" />
         <div class="service-card-overlay">
           <p class="service-number">05</p>
           <h3 class="service-name">Cuidado de Uñas</h3>
@@ -1714,6 +1714,22 @@
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
   }, { threshold: 0.12 });
   reveals.forEach(el => observer.observe(el));
+
+  // GIF HOVER
+  document.querySelectorAll('img[data-gif]').forEach(img => {
+    const still = img.src;
+    const gif = img.dataset.gif;
+    const card = img.closest('.service-card');
+    card.addEventListener('mouseenter', () => img.src = gif);
+    card.addEventListener('mouseleave', () => img.src = still);
+  });
+
+  // GIF PRELOAD — descarga en background para que el primer hover sea instantáneo
+  window.addEventListener('load', () => {
+    document.querySelectorAll('img[data-gif]').forEach(img => {
+      new Image().src = img.dataset.gif;
+    });
+  });
 </script>
 </body>
 </html>
