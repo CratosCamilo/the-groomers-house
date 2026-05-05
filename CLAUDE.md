@@ -39,8 +39,8 @@ URL del CTA: `https://wa.me/573204022533?text=Hola%2C%20quiero%20agendar%20una%2
 | Navbar | `#navbar` | Fijo, se oscurece al hacer scroll |
 | Hero | `#hero` | Imagen estática de Martín (`hero1_MartinFix.png`), sin slider |
 | Trust bar | — | Banda dorada con 4 credenciales (en móvil solo muestra 2) |
-| Servicios | `#servicios` | Grid de 5 tarjetas con hover reveal; descripción siempre visible en móvil |
-| Antes/Después | `#antes-despues` | Slider interactivo drag/click; touch-action split: pan-y en wrapper, none en handle |
+| Servicios | `#servicios` | Grid de 5 tarjetas con hover reveal + GIF animado en hover; descripción siempre visible en móvil |
+| Antes/Después | `#antes-despues` | Slider interactivo drag/click; touch-action split: pan-y en wrapper, none en handle; hint animation al entrar al viewport |
 | Sobre Silvia | `#silvia` | Foto + bio + certificaciones |
 | Proceso | `#proceso` | 4 pasos numerados — oculto en móvil (`display: none`) |
 | Testimonios | `#testimonios` | 3 reseñas placeholder |
@@ -60,11 +60,16 @@ URL del CTA: `https://wa.me/573204022533?text=Hola%2C%20quiero%20agendar%20una%2
 | `hero3_Luca.jpg` | Slide 3 del hero (Collie "Luca") — posición `55% 30%` |
 | `antes.png` | Imagen "Antes" del slider de comparación |
 | `despues.png` | Imagen "Después" del slider de comparación |
-| `servicio-bano-cuidado.png` | Tarjeta servicio Baño y Cuidado |
-| `servicio-corte-estilizado.png` | Tarjeta servicio Corte y Estilizado |
-| `servicio-cuidado-pelaje.png` | Tarjeta servicio Cuidado del Pelaje |
-| `servicio-secado-profesional.png` | Tarjeta servicio Secado Profesional |
-| `servicio-cuidado-unas.png` | Tarjeta servicio Cuidado de Uñas |
+| `servicio-bano-cuidado.png` | Tarjeta servicio Baño y Cuidado (imagen estática en reposo) |
+| `servicio-bano-cuidado.gif` | GIF animado hover — Baño y Cuidado (480×600, ~1.1 MB) |
+| `servicio-corte-estilizado.png` | Tarjeta servicio Corte y Estilizado (imagen estática en reposo) |
+| `servicio-corte-estilizado.gif` | GIF animado hover — Corte y Estilizado (480×600, ~1.1 MB) |
+| `servicio-cuidado-pelaje.png` | Tarjeta servicio Cuidado del Pelaje (imagen estática en reposo) |
+| `servicio-cuidado-pelaje.gif` | GIF animado hover — Cuidado del Pelaje (480×600, ~1.1 MB) |
+| `servicio-secado-profesional.png` | Tarjeta servicio Secado Profesional (imagen estática en reposo) |
+| `servicio-secado-profesional.gif` | GIF animado hover — Secado Profesional (480×600, ~1.1 MB) |
+| `servicio-cuidado-unas.png` | Tarjeta servicio Cuidado de Uñas (imagen estática en reposo) |
+| `servicio-cuidado-unas.gif` | GIF animado hover — Cuidado de Uñas (480×600, ~1.1 MB) |
 | `silvia-estilista.jpg.jpg` | Foto de Silvia (nota: nombre con doble extensión) |
 | `fachada.jpg` | Fachada del local — usada como imagen grande en galería |
 | `letrero_entrada.jpg` | Letrero de entrada — usada en galería |
@@ -110,7 +115,7 @@ Dark mode via CSS: `filter: invert(1) hue-rotate(180deg) brightness(0.85) satura
 
 - HTML5 semántico
 - CSS3 puro (variables, grid, flexbox, animaciones, IntersectionObserver)
-- JS vanilla (before/after drag, scroll reveal, navbar scroll, mobile menu toggle)
+- JS vanilla (before/after drag, scroll reveal, navbar scroll, mobile menu toggle, GIF hover swap + preload, before/after hint animation)
 - Fuentes: Google Fonts (Cormorant Garamond + Montserrat)
 - Sin dependencias externas, sin frameworks, sin build step
 - Un solo archivo `index.html` — listo para servir en cualquier hosting estático (GitHub Pages, Netlify, etc.)
